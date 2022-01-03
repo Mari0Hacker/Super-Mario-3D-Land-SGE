@@ -30,12 +30,15 @@ namespace Super_Mario_Land_3D_Savegame_Editor {
 			return hex.ToString();
 		}
 		public static byte[] BLKDTH_StringToByteArray(string hex) {
-			return Enumerable.Range(0, hex.Length).Where(x = >x % 2 == 0).Select(x = >Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
+			return Enumerable.Range(0, hex.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
 
 		}
 
-		private void BLKDTH_get_openfile() {
+		private void BLKDTH_get_openfile() 
+		{
 			OpenFileDialog openFD = new OpenFileDialog();
+			openFD.Filter = "SM3DL GameData.bin (*.bin)|*.bin";
+			openFD.Title = "Open Savefile";
 			if (openFD.ShowDialog() == DialogResult.OK) {
 				savegame = openFD.FileName;
 			}
@@ -494,12 +497,12 @@ namespace Super_Mario_Land_3D_Savegame_Editor {
 		private void button2_Click(object sender, EventArgs e) {
 			BLKDTH_set_data();
 			BLKDTH_crc32fix();
-			MessageBox.Show("Data saved");
+			MessageBox.Show("Data saved!");
 		}
 		private void button1_Click(object sender, EventArgs e) {
 			BLKDTH_get_openfile();
 			if (string.IsNullOrEmpty(savegame)) {
-				MessageBox.Show("no savegame selected");
+				MessageBox.Show("No savegame selected!");
 			} else {
 				BLKDTH_get_data();
 			}
@@ -508,7 +511,7 @@ namespace Super_Mario_Land_3D_Savegame_Editor {
 		#region WIP Option
 		private void unlock_worlds_s1_CheckedChanged(object sender, EventArgs e) {
 			if (unlock_worlds_s1.Checked == true) {
-				if (MessageBox.Show("This is a WIP Option." + Environment.NewLine + "Make sure you have a backup of your savegame", "unlock all Worlds", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+				if (MessageBox.Show("This is a WIP Option." + Environment.NewLine + "Make sure you have a backup of your savegame.", "Unlock all Worlds", MessageBoxButtons.OKCancel) == DialogResult.OK) {
 					unlock_worlds_s1.Checked = true;
 				} else {
 					unlock_worlds_s1.Checked = false;
@@ -517,7 +520,7 @@ namespace Super_Mario_Land_3D_Savegame_Editor {
 		}
 		private void unlock_worlds_s2_CheckedChanged(object sender, EventArgs e) {
 			if (unlock_worlds_s2.Checked == true) {
-				if (MessageBox.Show("This is a WIP Option." + Environment.NewLine + "Make sure you have a backup of your savegame", "unlock all Worlds", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+				if (MessageBox.Show("This is a WIP Option." + Environment.NewLine + "Make sure you have a backup of your savegame.", "Unlock all Worlds", MessageBoxButtons.OKCancel) == DialogResult.OK) {
 					unlock_worlds_s2.Checked = true;
 				} else {
 					unlock_worlds_s2.Checked = false;
@@ -526,7 +529,7 @@ namespace Super_Mario_Land_3D_Savegame_Editor {
 		}
 		private void unlock_worlds_s3_CheckedChanged(object sender, EventArgs e) {
 			if (unlock_worlds_s3.Checked == true) {
-				if (MessageBox.Show("This is a WIP Option." + Environment.NewLine + "Make sure you have a backup of your savegame", "unlock all Worlds", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+				if (MessageBox.Show("This is a WIP Option." + Environment.NewLine + "Make sure you have a backup of your savegame.", "Unlock all Worlds", MessageBoxButtons.OKCancel) == DialogResult.OK) {
 					unlock_worlds_s3.Checked = true;
 				} else {
 					unlock_worlds_s3.Checked = false;
@@ -534,5 +537,20 @@ namespace Super_Mario_Land_3D_Savegame_Editor {
 			}
 		}
 		#endregion
+			
+		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label5_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label3_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
